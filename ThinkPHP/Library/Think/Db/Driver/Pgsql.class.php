@@ -39,11 +39,7 @@ class Pgsql extends Driver{
     public function getFields($tableName) {
         list($tableName) = explode(' ', $tableName);
         $result =   $this->query('select fields_name as "field",fields_type as "type",fields_not_null as "null",fields_key_name as "key",fields_default as "default",fields_default as "extra" from table_msg('.$tableName.');');
-<<<<<<< HEAD
-        $info   =   [];
-=======
         $info   =   array();
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
         if($result){
             foreach ($result as $key => $val) {
                 $info[$val['field']] = array(

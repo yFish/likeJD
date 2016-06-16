@@ -107,11 +107,7 @@ class Ftp {
 
     /**
      * 创建目录
-<<<<<<< HEAD
-     * @param  string $savepath 要创建的穆里
-=======
      * @param  string $savepath 要创建的目录
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
      * @return boolean          创建状态，true-成功，false-失败
      */
     public function mkdir($savepath){

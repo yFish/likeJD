@@ -120,11 +120,8 @@ class Mysql extends Driver{
             foreach ($data as $key=>$val){
                 if(is_array($val) && 'exp' == $val[0]){
                     $value[]   =  $val[1];
-<<<<<<< HEAD
-=======
                 }elseif(is_null($val)){
                     $value[]   =   'NULL';
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
                 }elseif(is_scalar($val)){
                     if(0===strpos($val,':') && in_array($val,array_keys($this->bind))){
                         $value[]   =   $this->parseValue($val);
@@ -185,8 +182,6 @@ class Mysql extends Driver{
         if(empty($updates)) return '';
         return " ON DUPLICATE KEY UPDATE ".join(', ', $updates);
     }
-<<<<<<< HEAD
-=======
     
 	
 
@@ -237,5 +232,4 @@ class Mysql extends Driver{
             return false;
         }
     }
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 }

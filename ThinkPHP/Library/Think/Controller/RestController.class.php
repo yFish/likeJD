@@ -10,10 +10,7 @@
 // +----------------------------------------------------------------------
 namespace Think\Controller;
 use Think\Controller;
-<<<<<<< HEAD
-=======
 use Think\App;
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 /**
  * ThinkPHP REST控制器类
  */
@@ -74,15 +71,6 @@ class RestController extends Controller {
         if( 0 === strcasecmp($method,ACTION_NAME.C('ACTION_SUFFIX'))) {
             if(method_exists($this,$method.'_'.$this->_method.'_'.$this->_type)) { // RESTFul方法支持
                 $fun  =  $method.'_'.$this->_method.'_'.$this->_type;
-<<<<<<< HEAD
-                $this->$fun();
-            }elseif($this->_method == $this->defaultMethod && method_exists($this,$method.'_'.$this->_type) ){
-                $fun  =  $method.'_'.$this->_type;
-                $this->$fun();
-            }elseif($this->_type == $this->defaultType && method_exists($this,$method.'_'.$this->_method) ){
-                $fun  =  $method.'_'.$this->_method;
-                $this->$fun();
-=======
                 App::invokeAction($this,$fun);
             }elseif($this->_method == $this->defaultMethod && method_exists($this,$method.'_'.$this->_type) ){
                 $fun  =  $method.'_'.$this->_type;
@@ -90,7 +78,6 @@ class RestController extends Controller {
             }elseif($this->_type == $this->defaultType && method_exists($this,$method.'_'.$this->_method) ){
                 $fun  =  $method.'_'.$this->_method;
                 App::invokeAction($this,$fun);
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
             }elseif(method_exists($this,'_empty')) {
                 // 如果定义了_empty操作 则调用
                 $this->_empty($method,$args);

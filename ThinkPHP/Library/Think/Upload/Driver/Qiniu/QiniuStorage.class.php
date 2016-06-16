@@ -3,19 +3,6 @@
 
 	class QiniuStorage {
 
-<<<<<<< HEAD
-		public $QINIU_RSF_HOST = 'http://rsf.qbox.me';
-		public $QINIU_RS_HOST = 'http://rs.qbox.me';
-		public $QINIU_UP_HOST = 'http://up.qiniu.com';
-		public $timeout = '';
-
-		public function __construct($config){
-			$this->sk = $config['secrectKey'];
-			$this->ak = $config['accessKey'];
-			$this->domain = $config['domain'];
-			$this->bucket = $config['bucket'];
-			$this->timeout = isset($config['timeout'])? $config['timeout'] : 3600;
-=======
 		public $QINIU_RSF_HOST 	= 	'http://rsf.qbox.me';
 		public $QINIU_RS_HOST 	= 	'http://rs.qbox.me';
 		public $QINIU_UP_HOST 	= 	'http://up.qiniu.com';
@@ -27,7 +14,6 @@
 			$this->domain 	= 	$config['domain'];
 			$this->bucket 	= 	$config['bucket'];
 			$this->timeout 	= 	isset($config['timeout'])? $config['timeout'] : 3600;
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 		}
 
 		static function sign($sk, $ak, $data){
@@ -41,15 +27,6 @@
 		}
 
 		public function accessToken($url, $body=''){
-<<<<<<< HEAD
-			$parsed_url = parse_url($url);
-		    $path = $parsed_url['path'];
-		    $access = $path;
-		    if (isset($parsed_url['query'])) {
-		        $access .= "?" . $parsed_url['query'];
-		    }
-		    $access .= "\n";
-=======
 			$parsed_url = 	parse_url($url);
 		    $path 		= 	$parsed_url['path'];
 		    $access 	= 	$path;
@@ -57,7 +34,6 @@
 		        $access .= "?" . $parsed_url['query'];
 		    }
 		    $access    .= "\n";
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 
 		    if($body){
 		        $access .= $body;
@@ -94,16 +70,6 @@
 		public function upload($config, $file){
 			$uploadToken = $this->UploadToken($this->sk, $this->ak, $config);
 
-<<<<<<< HEAD
-			$url = "{$this->QINIU_UP_HOST}";
-			$mimeBoundary = md5(microtime());
-			$header = array('Content-Type'=>'multipart/form-data;boundary='.$mimeBoundary);
-			$data = array();
-
-			$fields = array(
-				'token'=>$uploadToken,
-				'key'=>$config['saveName']? $config['save_name'] : $file['fileName'],
-=======
 			$url 	= 	"{$this->QINIU_UP_HOST}";
 			$mimeBoundary = md5(microtime());
 			$header = 	array('Content-Type'=>'multipart/form-data;boundary='.$mimeBoundary);
@@ -112,7 +78,6 @@
 			$fields = array(
 				'token'	=>	$uploadToken,
 				'key'	=>	$config['saveName']? : $file['fileName'],
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 			);
 
 			if(is_array($config['custom_fields']) && $config['custom_fields'] !== array()){
@@ -128,17 +93,10 @@
 
 			//文件
 			array_push($data, '--' . $mimeBoundary);
-<<<<<<< HEAD
-			$name = $file['name'];
-			$fileName = $file['fileName'];
-			$fileBody = $file['fileBody'];
-			$fileName = self::Qiniu_escapeQuotes($fileName);
-=======
 			$name 		= 	$file['name'];
 			$fileName 	= 	$file['fileName'];
 			$fileBody 	= 	$file['fileBody'];
 			$fileName 	= 	self::Qiniu_escapeQuotes($fileName);
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 			array_push($data, "Content-Disposition: form-data; name=\"$name\"; filename=\"$fileName\"");
 			array_push($data, 'Content-Type: application/octet-stream');
 			array_push($data, '');
@@ -147,24 +105,14 @@
 			array_push($data, '--' . $mimeBoundary . '--');
 			array_push($data, '');
 
-<<<<<<< HEAD
-			$body = implode("\r\n", $data);
-			$response = $this->request($url, 'POST', $header, $body);
-=======
 			$body 		= 	implode("\r\n", $data);
 			$response 	= 	$this->request($url, 'POST', $header, $body);
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 			return $response;
 		}
 
 		public function dealWithType($key, $type){
-<<<<<<< HEAD
-			$param = $this->buildUrlParam();
-			$url = '';
-=======
 			$param 		= 	$this->buildUrlParam();
 			$url 		= 	'';
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 
 			switch($type){
 				case 'img':
@@ -205,35 +153,20 @@
 
 		//获取某个路径下的文件列表
 		public function getList($query = array(), $path = ''){
-<<<<<<< HEAD
-			$query = array_merge(array('bucket'=>$this->bucket), $query);
-			$url = "{$this->QINIU_RSF_HOST}/list?".http_build_query($query);
-			$accessToken = $this->accessToken($url);
-			$response = $this->request($url, 'POST', array('Authorization'=>"QBox $accessToken"));
-=======
 			$query 			= 	array_merge(array('bucket'=>$this->bucket), $query);
 			$url 			= 	"{$this->QINIU_RSF_HOST}/list?".http_build_query($query);
 			$accessToken 	= 	$this->accessToken($url);
 			$response 		= 	$this->request($url, 'POST', array('Authorization'=>"QBox $accessToken"));
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 			return $response;
 		}
 
 		//获取某个文件的信息
 		public function info($key){
-<<<<<<< HEAD
-			$key = trim($key);
-			$url = "{$this->QINIU_RS_HOST}/stat/" . self::Qiniu_Encode("{$this->bucket}:{$key}");
-			$accessToken = $this->accessToken($url);
-			$response = $this->request($url, 'POST', array(
-				'Authorization'=>"QBox $accessToken",
-=======
 			$key 			= 	trim($key);
 			$url 			= 	"{$this->QINIU_RS_HOST}/stat/" . self::Qiniu_Encode("{$this->bucket}:{$key}");
 			$accessToken 	= 	$this->accessToken($url);
 			$response 		= 	$this->request($url, 'POST', array(
 				'Authorization' 	=>	"QBox $accessToken",
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 			));
 			return $response;
 		}
@@ -293,11 +226,7 @@
 		}
 
 	    /**
-<<<<<<< HEAD
-	     * 请求百度云服务器
-=======
 	     * 请求云服务器
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 	     * @param  string   $path    请求的PATH
 	     * @param  string   $method  请求方法
 	     * @param  array    $headers 请求header

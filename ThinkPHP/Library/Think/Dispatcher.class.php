@@ -170,11 +170,8 @@ class Dispatcher {
             // 加载模块函数文件
             if(is_file(MODULE_PATH.'Common/function.php'))
                 include MODULE_PATH.'Common/function.php';
-<<<<<<< HEAD
-=======
             
             $urlCase        =   C('URL_CASE_INSENSITIVE');
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
             // 加载模块的扩展配置文件
             load_ext_file(MODULE_PATH);
         }else{

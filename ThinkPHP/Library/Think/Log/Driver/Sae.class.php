@@ -37,13 +37,6 @@ class Sae {
             preg_replace('@(\w+)\=([^;]*)@e', '$appSettings[\'\\1\']="\\2";', $_SERVER['HTTP_APPCOOKIE']);
             $is_debug = in_array($_SERVER['HTTP_APPVERSION'], explode(',', $appSettings['debug'])) ? true : false;
         }
-<<<<<<< HEAD
-        if($is_debug)
-            sae_set_display_errors(false);//记录日志不将日志打印出来
-        sae_debug($logstr);
-        if($is_debug)
-            sae_set_display_errors(true);
-=======
         if($is_debug){
             sae_set_display_errors(false);//记录日志不将日志打印出来
         }
@@ -51,7 +44,6 @@ class Sae {
         if($is_debug){
             sae_set_display_errors(true);
         }
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
 
     }
 }

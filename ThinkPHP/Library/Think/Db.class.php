@@ -34,11 +34,7 @@ class Db {
             // 兼容mysqli
             if('mysqli' == $options['type']) $options['type']   =   'mysql';
             // 如果采用lite方式 仅支持原生SQL 包括query和execute方法
-<<<<<<< HEAD
-            $class  =   $options['lite']?  'Think\Db\Lite' :   'Think\\Db\\Driver\\'.ucwords(strtolower($options['type']));
-=======
             $class  =   !empty($options['lite'])?  'Think\Db\Lite' :   'Think\\Db\\Driver\\'.ucwords(strtolower($options['type']));
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
             if(class_exists($class)){
                 self::$instance[$md5]   =   new $class($options);
             }else{

@@ -166,16 +166,6 @@ abstract class Driver {
             }
         }
         $this->bind =   array();
-<<<<<<< HEAD
-        $result =   $this->PDOStatement->execute();
-        // 调试结束
-        $this->debug(false);
-        if ( false === $result ) {
-            $this->error();
-            return false;
-        } else {
-            return $this->getResult();
-=======
         try{
             $result =   $this->PDOStatement->execute();
             // 调试结束
@@ -189,7 +179,6 @@ abstract class Driver {
         }catch (\PDOException $e) {
             $this->error();
             return false;
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
         }
     }
 
@@ -230,19 +219,6 @@ abstract class Driver {
             }
         }
         $this->bind =   array();
-<<<<<<< HEAD
-        $result =   $this->PDOStatement->execute();
-        $this->debug(false);
-        if ( false === $result) {
-            $this->error();
-            return false;
-        } else {
-            $this->numRows = $this->PDOStatement->rowCount();
-            if(preg_match("/^\s*(INSERT\s+INTO|REPLACE\s+INTO)\s+/i", $str)) {
-                $this->lastInsID = $this->_linkID->lastInsertId();
-            }
-            return $this->numRows;
-=======
         try{
             $result =   $this->PDOStatement->execute();
             // 调试结束
@@ -260,7 +236,6 @@ abstract class Driver {
         }catch (\PDOException $e) {
             $this->error();
             return false;
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
         }
     }
 

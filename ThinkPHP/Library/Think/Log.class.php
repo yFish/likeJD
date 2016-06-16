@@ -33,11 +33,7 @@ class Log {
 
     // 日志初始化
     static public function init($config=array()){
-<<<<<<< HEAD
-        $type   =   isset($config['type'])?$config['type']:'File';
-=======
         $type   =   isset($config['type']) ? $config['type'] : 'File';
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
         $class  =   strpos($type,'\\')? $type: 'Think\\Log\\Driver\\'. ucwords(strtolower($type));           
         unset($config['type']);
         self::$storage = new $class($config);
@@ -69,18 +65,11 @@ class Log {
     static function save($type='',$destination='') {
         if(empty(self::$log)) return ;
 
-<<<<<<< HEAD
-        if(empty($destination))
-            $destination = C('LOG_PATH').date('y_m_d').'.log';
-        if(!self::$storage){
-            $type = $type?:C('LOG_TYPE');
-=======
         if(empty($destination)){
             $destination = C('LOG_PATH').date('y_m_d').'.log';
         }
         if(!self::$storage){
             $type 	= 	$type ? : C('LOG_TYPE');
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
             $class  =   'Think\\Log\\Driver\\'. ucwords($type);
             self::$storage = new $class();            
         }
@@ -102,14 +91,6 @@ class Log {
      */
     static function write($message,$level=self::ERR,$type='',$destination='') {
         if(!self::$storage){
-<<<<<<< HEAD
-            $type = $type?:C('LOG_TYPE');
-            $class  =   'Think\\Log\\Driver\\'. ucwords($type);
-            self::$storage = new $class();            
-        }
-        if(empty($destination))
-            $destination = C('LOG_PATH').date('y_m_d').'.log';        
-=======
             $type 	= 	$type ? : C('LOG_TYPE');
             $class  =   'Think\\Log\\Driver\\'. ucwords($type);
             $config['log_path'] = C('LOG_PATH');
@@ -118,7 +99,6 @@ class Log {
         if(empty($destination)){
             $destination = C('LOG_PATH').date('y_m_d').'.log';        
         }
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
         self::$storage->write("{$level}: {$message}", $destination);
     }
 }

@@ -42,11 +42,7 @@ class Db {
      * @param mixed $sessName  
      */
     public function open($savePath, $sessName) { 
-<<<<<<< HEAD
-       $this->lifeTime = C('SESSION_EXPIRE')?C('SESSION_EXPIRE'):ini_get('session.gc_maxlifetime');
-=======
        $this->lifeTime 		= 	C('SESSION_EXPIRE')?C('SESSION_EXPIRE'):ini_get('session.gc_maxlifetime');
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
        $this->sessionTable  =   C('SESSION_TABLE')?C('SESSION_TABLE'):C("DB_PREFIX")."session";
        //分布式数据库
        $host = explode(',',C('DB_HOST'));
@@ -125,17 +121,10 @@ class Db {
      * @param string $sessID 
      */
    public function read($sessID) { 
-<<<<<<< HEAD
-       $hander = is_array($this->hander)?$this->hander[1]:$this->hander;
-       $res = mysql_query("SELECT session_data AS data FROM ".$this->sessionTable." WHERE session_id = '$sessID'   AND session_expire >".time(),$hander); 
-       if($res) {
-           $row = mysql_fetch_assoc($res);
-=======
        $hander 	= 	is_array($this->hander)?$this->hander[1]:$this->hander;
        $res 	= 	mysql_query('SELECT session_data AS data FROM '.$this->sessionTable." WHERE session_id = '$sessID'   AND session_expire >".time(),$hander); 
        if($res) {
            $row = 	mysql_fetch_assoc($res);
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
            return $row['data']; 
        }
        return ""; 
@@ -148,16 +137,10 @@ class Db {
      * @param String $sessData  
      */
    public function write($sessID,$sessData) { 
-<<<<<<< HEAD
-       $hander = is_array($this->hander)?$this->hander[0]:$this->hander;
-       $expire = time() + $this->lifeTime; 
-       mysql_query("REPLACE INTO  ".$this->sessionTable." (  session_id, session_expire, session_data)  VALUES( '$sessID', '$expire',  '$sessData')",$hander); 
-=======
        $hander 		= 	is_array($this->hander)?$this->hander[0]:$this->hander;
        $expire 		= 	time() + $this->lifeTime; 
        $sessData 	= 	addslashes($sessData);
        mysql_query('REPLACE INTO  '.$this->sessionTable." (  session_id, session_expire, session_data)  VALUES( '$sessID', '$expire',  '$sessData')",$hander); 
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
        if(mysql_affected_rows($hander)) 
            return true; 
        return false; 
@@ -169,13 +152,8 @@ class Db {
      * @param string $sessID 
      */
    public function destroy($sessID) { 
-<<<<<<< HEAD
-       $hander = is_array($this->hander)?$this->hander[0]:$this->hander;
-       mysql_query("DELETE FROM ".$this->sessionTable." WHERE session_id = '$sessID'",$hander); 
-=======
        $hander 	= 	is_array($this->hander)?$this->hander[0]:$this->hander;
        mysql_query('DELETE FROM '.$this->sessionTable." WHERE session_id = '$sessID'",$hander); 
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
        if(mysql_affected_rows($hander)) 
            return true; 
        return false; 
@@ -187,13 +165,8 @@ class Db {
      * @param string $sessMaxLifeTime 
      */
    public function gc($sessMaxLifeTime) { 
-<<<<<<< HEAD
-       $hander = is_array($this->hander)?$this->hander[0]:$this->hander;
-       mysql_query("DELETE FROM ".$this->sessionTable." WHERE session_expire < ".time(),$hander); 
-=======
        $hander = 	is_array($this->hander)?$this->hander[0]:$this->hander;
        mysql_query('DELETE FROM '.$this->sessionTable.' WHERE session_expire < '.time(),$hander); 
->>>>>>> 29fb6809ab622c4e8d6b083152cc6c1d81eb7bb6
        return mysql_affected_rows($hander); 
    } 
 

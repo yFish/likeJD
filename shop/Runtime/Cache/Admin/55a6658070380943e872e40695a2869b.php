@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -6,8 +6,8 @@
 
         <title>用户登录</title>
 
-        <link href="__PUBLIC__/Admin/css/User_Login.css" type="text/css" rel="stylesheet" />
-        <script type="text/javascript" charset="utf-8" src="{$Think.config.COMMON_URL}js/jquery-2.1.4.min.js"></script>
+        <link href="/Public/Admin/css/User_Login.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" charset="utf-8" src="<?php echo (C("COMMON_URL")); ?>js/jquery-2.1.4.min.js"></script>
     </head><body id="userlogin_body">
         <div></div>
         <div id="user_login">
@@ -18,7 +18,7 @@
                         <li class="user_top_c"></li>
                         <li class="user_top_r"></li></ul>
                 </dd><dd id="user_main">
-                    <form action="__SELF__" method="post" id='loginForm'>
+                    <form action="/index.php/admin/admin/login" method="post" id='loginForm'>
                         <ul>
                             <li class="user_main_l"></li>
                             <li class="user_main_c">
@@ -38,7 +38,7 @@
                                         <li class="user_main_text">验证码： </li>
                                         <li class="user_main_input">
                                             <input class="TxtValidateCodeCssClass" onkeyup='check_code();'maxlength='4' id="captcha" name="captcha" type="text">
-                                             <img id='verify'src="{:U('verifyImg')}"  alt="" title='点击换一张' onclick='this.src=this.src'/>
+                                             <img id='verify'src="<?php echo U('verifyImg');?>"  alt="" title='点击换一张' onclick='this.src=this.src'/>
                                         </li>                                       
                                     </ul>
                                      <ul>
@@ -59,7 +59,7 @@
                                                     {
                                                         //通过ajax调用后台服务器验证验证码是否正确
                                                         $.ajax({
-                                                            url:"{:U('checkCode')}",
+                                                            url:"<?php echo U('checkCode');?>",
                                                             data:{'code':cod},
                                                             type:'get',
                                                             dataType:'json',
@@ -95,7 +95,7 @@
                             </li>
                             <li class="user_main_r">
 
-                                <input style="border: medium none; background: url('__PUBLIC__/Admin/img/user_botton.gif') repeat-x scroll left top transparent; height: 122px; width: 111px; display: block; cursor: pointer;" value="" type="submit">
+                                <input style="border: medium none; background: url('/Public/Admin/img/user_botton.gif') repeat-x scroll left top transparent; height: 122px; width: 111px; display: block; cursor: pointer;" value="" type="submit">
                             </li>
                         </ul>
                     </form>

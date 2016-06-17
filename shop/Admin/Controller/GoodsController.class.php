@@ -12,9 +12,19 @@ class GoodsController extends Controller {
 		$goodsinfo = $nowinfo['pageinfo'];  // 所有信息返回
 		$pagelist = $nowinfo['pagelist'];	// 分页信息返回
 
+
+		//面包屑
+		$bread = array(
+				'first'  =>  '商品管理',
+				'second' =>  '商品列表',
+				'sendTo' =>array(
+						'商品添加',U('goods/add')
+					),		
+			);
 		
 
 		//拆分现示
+		$this->assign('bread',$bread); //面包屑
 		$this->assign('goodsinfo',$goodsinfo); // 所有信息
 		$this->assign('pagelist',$pagelist); // 分页信息
 		$this->display();
@@ -42,7 +52,16 @@ class GoodsController extends Controller {
 		else
 		{	
 			//表单展示
-			
+			//面包屑
+				$bread = array(
+				'first'  =>  '商品管理',
+				'second' =>  '商品添加',
+				'sendTo' =>array(
+						'【返回】',U('goods/showlist')
+					),		
+			);
+		
+			$this->assign('bread',$bread); //面包屑
 			$this->display();
 		}
 		
@@ -80,7 +99,16 @@ class GoodsController extends Controller {
 			{
 				$this->assign('imginfo',$imginfo);  ## 查询结果不为空时, 渲染到模板
 			}
-			
+			//面包屑
+				$bread = array(
+					'first'  =>  '商品管理',
+					'second' =>  '商品修改',
+					'sendTo' =>array(
+							'【返回】',U('goods/showlist')
+						),		
+				);
+		
+			$this->assign('bread',$bread); //面包屑
 			$this->assign('goodsinfo',$goodsinfo);
 			$this->display();
 		}

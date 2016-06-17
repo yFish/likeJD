@@ -8,16 +8,44 @@ class AdminController extends Controller {
 	##登陆
 	public function login(){
 		if(IS_POST)
-		{
-			var_dump($_POST);
+		{	
+			//判断用户名与密码的合法性
+			$name = $_POST['admin_user'];
+			$pwd = $_POST['admin_psd'];
+
+			//实例化Model对象  管理员表
+			$info = D('Manager')->where(array('mg_name'=>$name,'mg_pwd'=>$pwd))->find();
+			if($info!=null)
+			{
+				   // 将用户登录信息   id/name  session持久化
+					Session('admin_id',$info['mg_id']);				
+					Session('admin_name',$info['mg_name']);
+
+				   //页面跳转
+				   $this->redirect('admin/index/index');	
+			}
+			else
+			{	
+				//验证失败 跳转回登录页面
+				$this->error('用户名或密码错误','login',2);
+			}
 		}
 		else
 		{
 			$this->display();
 		}
-			
-				
-			
+						
+	}
+
+	##管理员退出系统
+	public function logout()
+	{	
+		//清除session
+		session(null);
+
+		//跳转到登陆页
+		//$this->redirect(模块/控制器/方法)  相同的模块与控制器 只需要天上方法名就可以
+		$this->redirect('login');
 	}
 	
 
@@ -35,6 +63,7 @@ class AdminController extends Controller {
 		$very->entry();
 	}
 
+	##前台 login.html 调用ajax 检测验证码
 	public function checkCode()
 	{
 		$code = I('get.code');

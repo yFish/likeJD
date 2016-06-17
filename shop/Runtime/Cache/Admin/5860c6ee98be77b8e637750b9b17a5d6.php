@@ -28,8 +28,7 @@
         </div>
         <div></div>
 
-             
-        <div class="div_search">
+                <div class="div_search">
             <span>
                 <form action="#" method="get">
                     品牌<select name="s_product_mark" style="width: 100px;">
@@ -45,26 +44,16 @@
             <table id="tb_1" class="table_a" border="1" width="100%" >
                 <tbody>
                     <tr style="font-weight: bold;">
-                        <td >序号</td>
-                        <td>商品名称</td>
-                        <td>库存</td>
-                        <td>价格</td>
-                        <td>图片</td>
-                        <td>缩略图</td>
-                        <td>重量</td>
-                        <td>创建时间</td>
+                        <td>角色ID</td>
+                        <td>角色名称</td>
+                        <td>权限名称</td>
                         <td  colspan="2">操作</td>
                     </tr>
-               <?php if(is_array($goodsinfo)): foreach($goodsinfo as $key=>$g): ?><tr id="product_<?php echo ($g['goods_id']); ?>">
-                        <td><?php echo ($g['goods_id']); ?></td>
-                        <td><a href="#"><?php echo ($g['goods_name']); ?></a></td>
-                        <td>100</td>
-                        <td><?php echo ($g['goods_price']); ?></td>
-                        <td><img src="/<?php echo (substr($g['goods_big_logo'],2)); ?>" alt="暂无图片" height="100" width="100"></td>
-                        <td><img src="/<?php echo (substr($g['goods_small_logo'],2)); ?>" alt="暂无图片" height="60" width="60"></td>
-                        <td><?php echo ($g['goods_weight']); ?></td>
-                        <td><?php echo (date("Y-m-d H:i:s",$g['add_time'])); ?></td>
-                        <td><a href="<?php echo U('Admin/goods/update',array('goods_id'=>$g['goods_id']));?>">修改</a></td>
+               <?php if(is_array($info)): foreach($info as $key=>$g): ?><tr id="product_<?php echo ($g['role_id']); ?>">
+                        <td><?php echo ($g['role_id']); ?></td>
+                        <td><a href="#"><?php echo ($g['role_name']); ?></a></td>
+                        <td><?php echo ($g['role_auth_ids']); ?></td>                                     
+                        <td><a href="<?php echo U('admin/role/distribute',array('role_id'=>$g['role_id']));?>">分配权限</a></td>
                         <td><a href="javascript:;" onclick="if(confirm('确认要删除此商品吗?')){del_goods(<?php echo ($g['goods_id']); ?>)};">删除</a></td>
                     </tr><?php endforeach; endif; ?>
                     <script>    
@@ -91,7 +80,7 @@
                 </tbody>
             </table>
         </div>
-
+ 
 
     </body>
 </html>

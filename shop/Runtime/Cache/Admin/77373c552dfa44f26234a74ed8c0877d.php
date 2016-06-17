@@ -1,5 +1,35 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<style>
+    
+    #table_1 tr {
+         text-align: center;
+    }
+</style>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
-         <script type="text/javascript" charset="utf-8" src="{$Think.config.PLUGIN_URL}ueditor/ueditor.config.js"></script>
+        <title>会员列表</title>
+
+        <link href="/Public/Admin/css/mine.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" charset="utf-8" src="<?php echo (C("COMMON_URL")); ?>js/jquery-2.1.4.min.js"></script>
+    </head>
+    <body>
+        <style>
+            .tr_color{background-color: #9F88FF}
+        </style>
+        <div class="div_head">
+            <span>
+                <span style="float: left;">当前位置是：<?php echo ($bread['first']); ?>-》<?php echo ($bread['second']); ?></span>
+                <span style="float: right; margin-right: 8px; font-weight: bold;">
+                    <a style="text-decoration: none;" href="<?php echo ($bread['sendTo'][1]); ?>"><?php echo ($bread['sendTo'][0]); ?></a>
+                </span>
+            </span>
+        </div>
+        <div></div>
+
+        
+         <script type="text/javascript" charset="utf-8" src="<?php echo (C("PLUGIN_URL")); ?>ueditor/ueditor.config.js"></script>
             <script>
                 UEDITOR_CONFIG.toolbars = [[
                      'fullscreen', 'source', '|', 'undo', 'redo', '|',
@@ -13,10 +43,10 @@
                 'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|'
                 ]];   
              </script>
-        <script type="text/javascript" charset="utf-8" src="{$Think.config.PLUGIN_URL}ueditor/ueditor.all.min.js"> </script>
-        <script type="text/javascript" charset="utf-8" src="{$Think.config.PLUGIN_URL}ueditor/lang/zh-cn/zh-cn.js"></script>
-        <script type="text/javascript" charset="utf-8" src="{$Think.config.COMMON_URL}js/jquery-2.1.4.min.js"></script>
-        <script type="text/javascript" charset="utf-8" src="{$Think.config.COMMON_URL}js/uploadPreview.js"></script>
+        <script type="text/javascript" charset="utf-8" src="<?php echo (C("PLUGIN_URL")); ?>ueditor/ueditor.all.min.js"> </script>
+        <script type="text/javascript" charset="utf-8" src="<?php echo (C("PLUGIN_URL")); ?>ueditor/lang/zh-cn/zh-cn.js"></script>
+        <script type="text/javascript" charset="utf-8" src="<?php echo (C("COMMON_URL")); ?>js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="<?php echo (C("COMMON_URL")); ?>js/uploadPreview.js"></script>
 </head>
 <script>
     $(function(){
@@ -85,20 +115,18 @@
                <table border="1" width="100%" class="table_a" id="general-tab-tb">
                     <tr>
                         <td>商品名称:</td>
-                        <td><input type="text" name="goods_name" value="{$goodsinfo['goods_name']}" /></td>
+                        <td><input type="text" name="goods_name" value="<?php echo ($goodsinfo['goods_name']); ?>" /></td>
                     </tr>               
                     <tr>
                         <td>商品价格:</td>
-                        <td><input type="text" name="goods_price" value="{$goodsinfo['goods_price']}" /></td>
+                        <td><input type="text" name="goods_price" value="<?php echo ($goodsinfo['goods_price']); ?>" /></td>
                     </tr>
                     <tr>
                         <td>商品logo图片:</td>
                         <td>
                                 <input type="file" name="goods_logo_update" />
-                            <notempty name="goodsinfo['goods_big_logo']">    
-                                <img src="{$goodsinfo['goods_big_logo']|substr=###,1}"  height="200px" alt="" />
-                                <span style="color: red">如果选择上传新的logo图片,则会覆盖旧的logo图片</span>
-                            </notempty>
+                            <?php if(!empty($goodsinfo['goods_big_logo'])): ?><img src="<?php echo (substr($goodsinfo['goods_big_logo'],1)); ?>"  height="200px" alt="" />
+                                <span style="color: red">如果选择上传新的logo图片,则会覆盖旧的logo图片</span><?php endif; ?>
                         </td>
                        
                     </tr>
@@ -108,7 +136,7 @@
                     <td>商品详细描述</td>
                     <td>
                         <textarea name="goods_introduce" id="goods_introduce" style="width:730px;height:200px;" >
-                            {$goodsinfo['goods_introduce']}
+                            <?php echo ($goodsinfo['goods_introduce']); ?>
                         </textarea>
                     </td>
                 </tr>
@@ -120,14 +148,14 @@
                 <table border="1" width="100%" class="table_a" id="mix-tab-tb"  style="display:none">
                 <tr>
                     <td>其他信息</td>
-                    <td><input type="text" name="goods_weight"  value="{$goodsinfo['goods_weight']}"/></td>
+                    <td><input type="text" name="goods_weight"  value="<?php echo ($goodsinfo['goods_weight']); ?>"/></td>
                 </tr>
                 </table>
 
                 <table border="1" width="100%" class="table_a" id="properties-tab-tb" style="display:none">
                 <tr>
                     <td>商品重量</td>
-                    <td><input type="text" name="goods_weight" value="{$goodsinfo['goods_weight']}" /></td>
+                    <td><input type="text" name="goods_weight" value="<?php echo ($goodsinfo['goods_weight']); ?>" /></td>
                 </tr> 
                 </table>
 
@@ -154,7 +182,7 @@
                         function img_del(img_id)
                         {
                             $.ajax({
-                                url:"{:U('delImg')}",       //执行url 因为是同一个控制器 所以U:函数只需要写方法名
+                                url:"<?php echo U('delImg');?>",       //执行url 因为是同一个控制器 所以U:函数只需要写方法名
                                 data:{'img_id':img_id},     //参数   将ID 作为参数 传递过去
                                 success: function(msg){     
                                    alert(msg);              //回调
@@ -165,19 +193,14 @@
                         }
                 </script>
                 <tr>
-                    <notempty name="imginfo"> 
-                        <td colspan="100">
+                    <?php if(!empty($imginfo)): ?><td colspan="100">
                             <ul>
-            <foreach name="imginfo" item="v">
-            <li style="float: left; list-style:none;" id="img{$v['id']}">
-                <span style="cursor: pointer;" onclick="if(confirm('确定要删除这张图片吗?')){img_del({$v['id']})}">[x]</span>
-                <img style="height:100px; width: 100px;" src="{$v['pics_gig']|substr=###,1}" alt="" />
-            </li>
-
-            </foreach>
+            <?php if(is_array($imginfo)): foreach($imginfo as $key=>$v): ?><li style="float: left; list-style:none;" id="img<?php echo ($v['id']); ?>">
+                <span style="cursor: pointer;" onclick="if(confirm('确定要删除这张图片吗?')){img_del(<?php echo ($v['id']); ?>)}">[x]</span>
+                <img style="height:100px; width: 100px;" src="<?php echo (substr($v['pics_gig'],1)); ?>" alt="" />
+            </li><?php endforeach; endif; ?>
                             </ul>
-                        </td> 
-                    </notempty>
+                        </td><?php endif; ?>
                 </tr>
                 <tr>
                     <td><span style='cursor: pointer' onclick='add_item();'>[+]</span>商品相册</td>
@@ -216,7 +239,11 @@
                     <td><input type="text" name="goods_weight" /></td>
                 </tr>   
                 </table>
-                <input type="hidden" value="{$goodsinfo['goods_id']}" name="goods_id">
+                <input type="hidden" value="<?php echo ($goodsinfo['goods_id']); ?>" name="goods_id">
                 <p style="margin-left: 450px"><input type="submit" value="修改"></p>          
             </form>
         </div>
+
+
+    </body>
+</html>

@@ -24,48 +24,32 @@
         <table height="100%" cellspacing=0 cellpadding=0 width=170 
                background=./img/menu_bg.jpg border=0>
                <tr>
-                <td valign=top align=middle>
+                  <td valign=top align=middle>
                     <table cellspacing=0 cellpadding=0 width="100%" border=0>
-
                         <tr>
                             <td height=10></td></tr></table>
-                    <table cellspacing=0 cellpadding=0 width=150 border=0>
-
+                  <!--顶级权限-->
+                  <?php if(is_array($infoA)): foreach($infoA as $key=>$v): ?><table cellspacing=0 cellpadding=0 width=150 border=0>
                         <tr height=22>
-                            <td style="padding-left: 30px" background=./img/menu_bt.jpg><a 
-                                    class=menuparent onclick=expand(1) 
-                                    href="javascript:void(0);">关于我们</a></td></tr>
+                            <td style="padding-left: 30px" background=./img/menu_bt.jpg>
+                              <a class=menuparent onclick=expand("<?php echo ($v['auth_id']); ?>") href="javascript:void(0);"><?php echo ($v['auth_name']); ?></a>
+                            </td>
+                            </tr>
                         <tr height=4>
-                            <td></td></tr></table>
-                    <table id=child1 style="display: none" cellspacing=0 cellpadding=0 
+                            <td></td></tr>
+                    </table>
+                  
+                  <!--次顶级权限-->
+                    <table id="child<?php echo ($v['auth_id']); ?>" style="display: none" cellspacing=0 cellpadding=0 
                            width=150 border=0>
-                        <tr height=20>
+                           <?php if(is_array($infoB)): foreach($infoB as $key=>$vv): if($vv[auth_pid] == $v['auth_id'] ): ?><tr height=20>
                             <td align=middle width=30><img height=9 
                                                            src="/Public/Admin/img/menu_icon.gif" width=9></td>
-                            <td><a class=menuchild 
-                                   href="#" 
-                                   target=main>公司简介</a></td></tr>
-                        <tr height=20>
-                            <td align=middle width=30><img height=9 
-                                                           src="/Public/Admin/img/menu_icon.gif" width=9></td>
-                            <td><a class=menuchild 
-                                   href="#" 
-                                   target=main>荣誉资质</a></td></tr>
-                        <tr height=20>
-                            <td align=middle width=30><img height=9 
-                                                           src="/Public/Admin/img/menu_icon.gif" width=9></td>
-                            <td><a class=menuchild 
-                                   href="#" 
-                                   target=main>分类管理</a></td></tr>
-                        <tr height=20>
-                            <td align=middle width=30><img height=9 
-                                                           src="/Public/Admin/img/menu_icon.gif" width=9></td>
-                            <td><a class=menuchild 
-                                   href="#" 
-                                   target=main>子类管理</a></td></tr>
-                        <tr height=4>
-                            <td colspan=2></td></tr></table>
-                    <table cellspacing=0 cellpadding=0 width=150 border=0>
+                            <td><a class=menuchild  href="/index.php/Admin/<?php echo ($vv['auth_c']); ?>/<?php echo ($vv['auth_a']); ?>"  target=right><?php echo ($vv['auth_name']); ?></a></td>
+                        </tr><?php endif; endforeach; endif; ?>
+                    </table><?php endforeach; endif; ?>
+
+                    <!-- <table cellspacing=0 cellpadding=0 width=150 border=0>
                         <tr height=22>
                             <td style="padding-left: 30px" background=./img/menu_bt.jpg><a 
                                     class=menuparent onclick=expand(2) 
@@ -321,7 +305,7 @@
                                    href="#" 
                                    target=main>管理员列表</a></td></tr>
                         <tr height=4>
-                            <td colspan=2></td></tr></table>
+                            <td colspan=2></td></tr></table>-->
                     <table cellspacing=0 cellpadding=0 width=150 border=0>
 
                         <tr height=22>
@@ -329,7 +313,7 @@
                                     class=menuparent onclick=expand(0) 
                                     href="javascript:void(0);">个人管理</a></td></tr>
                         <tr height=4>
-                            <td></td></tr></table>
+                            <td></td></tr></table> 
                     <table id=child0 style="display: none" cellspacing=0 cellpadding=0 
                            width=150 border=0>
 

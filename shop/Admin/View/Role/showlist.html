@@ -1,4 +1,3 @@
-     
         <div class="div_search">
             <span>
                 <form action="#" method="get">
@@ -15,27 +14,17 @@
             <table id="tb_1" class="table_a" border="1" width="100%" >
                 <tbody>
                     <tr style="font-weight: bold;">
-                        <td >序号</td>
-                        <td>商品名称</td>
-                        <td>库存</td>
-                        <td>价格</td>
-                        <td>图片</td>
-                        <td>缩略图</td>
-                        <td>重量</td>
-                        <td>创建时间</td>
+                        <td>角色ID</td>
+                        <td>角色名称</td>
+                        <td>权限名称</td>
                         <td  colspan="2">操作</td>
                     </tr>
-               <foreach name='goodsinfo' item='g'>
-                    <tr id="product_{$g['goods_id']}">
-                        <td>{$g['goods_id']}</td>
-                        <td><a href="#">{$g['goods_name']}</a></td>
-                        <td>100</td>
-                        <td>{$g['goods_price']}</td>
-                        <td><img src="/{$g['goods_big_logo']|substr=###,2}" alt="暂无图片" height="100" width="100"></td>
-                        <td><img src="/{$g['goods_small_logo']|substr=###,2}" alt="暂无图片" height="60" width="60"></td>
-                        <td>{$g['goods_weight']}</td>
-                        <td>{$g['add_time']|date="Y-m-d H:i:s",###}</td>
-                        <td><a href="{:U('Admin/goods/update',array('goods_id'=>$g['goods_id']))}">修改</a></td>
+               <foreach name='info' item='g'>
+                    <tr id="product_{$g['role_id']}">
+                        <td>{$g['role_id']}</td>
+                        <td><a href="#">{$g['role_name']}</a></td>
+                        <td>{$g['role_auth_ids']}</td>                                     
+                        <td><a href="{:U('admin/role/distribute',array('role_id'=>$g['role_id']))}">分配权限</a></td>
                         <td><a href="javascript:;" onclick="if(confirm('确认要删除此商品吗?')){del_goods({$g['goods_id']})};">删除</a></td>
                     </tr>
                 </foreach>
@@ -63,3 +52,4 @@
                 </tbody>
             </table>
         </div>
+ 

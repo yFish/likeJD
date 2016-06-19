@@ -33,23 +33,17 @@
     <table id="tb_1" class="table_a" border="1" width="100%" >
         <tbody>
             <tr style="font-weight: bold;">
-                <td>角色ID</td>
-                <td>权限名称</td>
-                <td>控制器名</td>
-                <td>方法名称</td>
-                <td>所属分组</td>
-                <td>全路径</td>
-                <td>等级</td>
+                <td>ID序号</td>
+                <td>名称</td>
+                <td>登记时间</td>
+                <td>角色</td>
                 <td  colspan="3">操作</td>
             </tr>
-       <?php if(is_array($authinfo)): foreach($authinfo as $key=>$g): ?><tr id="product_<?php echo ($g['role_id']); ?>">
-                <td><?php echo ($g['auth_id']); ?></td>
-                <td><?php echo str_repeat('---/',$g['auth_level']); ?><a href='javascript:;'><?php echo ($g['auth_name']); ?></a></td>                                    
-                <td><?php echo ($g['auth_c']); ?></td>                                     
-                <td><?php echo ($g['auth_a']); ?></td>                                     
-                <td><?php echo ($g['auth_pid']); ?></td>                                     
-                <td><?php echo ($g['auth_path']); ?></td>                                     
-                <td><?php echo ($g['auth_level']); ?></td>                                     
+       <?php if(is_array($minfo)): foreach($minfo as $key=>$g): ?><tr id="product_<?php echo ($g['mg_id']); ?>">
+                <td><?php echo ($g['mg_id']); ?></td>                                    
+                <td><a href='javascript:;'><?php echo ($g['mg_name']); ?></a></td>                                    
+                <td><?php echo (date('Y-m-d H:i:s',$g['mg_time'])); ?></td>                                     
+                <td><?php echo ($g['role_name']); ?></td>                                                                        
                 <td><a href="<?php echo U('admin/role/distribute',array('role_id'=>$g['role_id']));?>">修改</a></td>
                 <td><a href="javascript:;" onclick="if(confirm('确认要删除此商品吗?')){del_goods(<?php echo ($g['goods_id']); ?>)};">删除</a></td>
             </tr><?php endforeach; endif; ?>
@@ -57,7 +51,7 @@
         </tbody>
     </table>
 </div>
-
+ 
 
     </body>
 </html>

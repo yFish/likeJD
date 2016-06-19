@@ -84,7 +84,20 @@ class AdminController extends Controller {
 	{
 		
 		//信息收集  信息显示
-		
+		// $mangerModel = D('Manager');
+		$minfo = D('Manager')->alias('m')->join('LEFT JOIN __ROLE__ r on m.mg_role_id=r.role_id')->field('m.*,r.role_name')->select();
+
+		//面包屑
+		$bread = array(
+				'first'=>'管理员',
+				'second'=>'管理员列表',
+				'sendTo'=>array(
+					'【添加管理员】',U('Admin/add'),
+					),
+			);
+
+		$this->assign('minfo',$minfo);
+		$this->assign('bread',$bread);
 		$this->display();
 	}
 

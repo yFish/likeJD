@@ -36,27 +36,7 @@
                         <td><a href="javascript:;" onclick="if(confirm('确认要删除此商品吗?')){del_goods({$g['goods_id']})};">删除</a></td>
                     </tr>
                 </foreach>
-                    <script>    
-                                function del_goods(goods_id){
-                                        $.ajax({
-                                              url:"{:U('delGoods')}",
-                                              data:{'goods_id':goods_id}, 
-                                              dataType:'json',                                                                  
-                                              success:function(msg){
-                                                if(msg.rs==1)
-                                                {
-                                                    $('#product_'+goods_id).remove();
-                                                }                               
-                                              }
-                                             
-                                      }); 
-                                }
-                    </script>
-                    <tr>
-                        <td colspan="20" style="text-align: center">
-                            {$pagelist}
-                        </td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>

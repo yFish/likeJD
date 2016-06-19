@@ -79,6 +79,15 @@ class AdminController extends Controller {
 			}
 	}
 
+	##显示用户角色信息
+	public function showlist()
+	{
+		
+		//信息收集  信息显示
+		
+		$this->display();
+	}
+
 
 
 }

@@ -1,0 +1,32 @@
+<div style="font-size: 13px;margin: 10px 5px">
+    <form action="" method="post" enctype="multipart/form-data" id="addForm">
+       <table border="1" width="100%" class="table_a" id="general-tab-tb">
+            <tr>
+                <td>权限名称:</td>
+                <td><input type="text" name="auth_name" /></td>
+            </tr> 
+             <tr>
+                <td>父级权限:</td>
+                <td>
+                    <select name="auth_pid" id="">
+                        <option value="0">-请选择-</option>
+                        <foreach name='ainfo' item='v'>
+                            <option value="{$v['auth_id']}">
+                                {:str_repeat('---',$v['auth_level'])}{$v['auth_name']}</option>
+                        </foreach>
+                    </select>
+                </td>
+            </tr>  
+             <tr>
+                <td>控制器名:</td>
+                <td><input type="text" name="auth_c" /></td>
+            </tr>  
+             <tr>
+                <td>操作方法:</td>
+                <td><input type="text" name="auth_a" /></td>
+            </tr>                
+         
+        </table>
+        <p style="margin-left: 360px"><input type="submit" value="添加">
+    </form>
+</div>

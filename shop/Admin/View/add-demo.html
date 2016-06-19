@@ -1,0 +1,24 @@
+<div style="font-size: 13px;margin: 10px 5px">
+    <form action="" method="post" enctype="multipart/form-data" id="addForm">
+       <table border="1" width="100%" class="table_a" id="general-tab-tb">
+            <tr>
+                <td>商品名称:</td>
+                <td><input type="text" name="goods_name" /></td>
+            </tr>               
+            <tr>
+                <td>商品价格:</td>
+                <td><input type="text" name="goods_price" /></td>
+            </tr>
+            <tr>
+                <td>商品logo图片:</td>
+                <td>
+                    <input type="file" name="goods_logo"  id="goods_logo"/>
+                    <div id="goods_logo_id">
+                        <img  alt="" id='imgShow' height='120'/>
+                    </div>
+                </td>
+            </tr>            
+        </table>
+        <p style="margin-left: 360px"><input type="submit" value="添加">
+    </form>
+</div>

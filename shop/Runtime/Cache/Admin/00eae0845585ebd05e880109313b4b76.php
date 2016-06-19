@@ -64,27 +64,7 @@
                         <td><a href="<?php echo U('admin/role/distribute',array('role_id'=>$g['role_id']));?>">修改</a></td>
                         <td><a href="javascript:;" onclick="if(confirm('确认要删除此商品吗?')){del_goods(<?php echo ($g['goods_id']); ?>)};">删除</a></td>
                     </tr><?php endforeach; endif; ?>
-                    <script>    
-                                function del_goods(goods_id){
-                                        $.ajax({
-                                              url:"<?php echo U('delGoods');?>",
-                                              data:{'goods_id':goods_id}, 
-                                              dataType:'json',                                                                  
-                                              success:function(msg){
-                                                if(msg.rs==1)
-                                                {
-                                                    $('#product_'+goods_id).remove();
-                                                }                               
-                                              }
-                                             
-                                      }); 
-                                }
-                    </script>
-                    <tr>
-                        <td colspan="20" style="text-align: center">
-                            <?php echo ($pagelist); ?>
-                        </td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>

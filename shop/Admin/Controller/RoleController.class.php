@@ -1,9 +1,8 @@
 <?php 
 namespace Admin\Controller;
-use 	Think\Controller;
+use  Common\Tools\BackController;
 
-class RoleController  extends Controller {
-
+class RoleController  extends BackController {
 
 	##显示全部角色信息
 	public function showlist()

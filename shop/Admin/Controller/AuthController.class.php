@@ -1,8 +1,8 @@
 <?php 
 namespace Admin\Controller;
-use Think\Controller;
+use  Common\Tools\BackController;
 
-class AuthController extends Controller{
+class AuthController extends BackController{
 
 	//列表展示
 	public function showlist()

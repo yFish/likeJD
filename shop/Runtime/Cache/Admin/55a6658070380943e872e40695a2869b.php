@@ -19,7 +19,7 @@
                         <li class="user_top_c"></li>
                         <li class="user_top_r"></li></ul>
                 </dd><dd id="user_main">
-                    <form action="/index.php/Admin/Admin/login.html" method="post" id='loginForm'>
+                    <form action="/index.php/admin/admin/login" method="post" id='loginForm'>
                         <ul>
                             <li class="user_main_l"></li>
                             <li class="user_main_c">
@@ -89,7 +89,6 @@
 
                                                }
 
-                                          
                                         </script>    
 
                                 </div>

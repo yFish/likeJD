@@ -1,7 +1,7 @@
 <?php 
 namespace Admin\Controller;
-use Think\Controller;
-class IndexController extends Controller {
+use Common\Tools\BackController;
+class IndexController extends BackController {
 	
 	//构造方法去掉layout模板
 	public function __construct()

@@ -1,7 +1,7 @@
 <?php 
 namespace Admin\Controller;
-use Think\Controller;
-class GoodsController extends Controller {
+use Common\Tools\BackController;
+class GoodsController extends BackController {
 
 	##列表展示 
 	public function showlist(){

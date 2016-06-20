@@ -8,7 +8,7 @@ return array(
     'COMMON_URL'=>'/Common/',
 	
     //定义网站的地址域名(可以方便图片的现示)
-    // 'SELF_URL'  => 'dj.com',
+    'SELF_URL'  => 'dj.com',
     //打开页面跟踪信息
     'SHOW_PAGE_TRACE' =>true,
 
